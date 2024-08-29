@@ -14,13 +14,15 @@ const HomePage: React.FC<ProductsPageProps> = ({ products }) => {
   const [category, setCategory] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<number | string>("");
 
- const handleCategoryChangeEvent = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setCategory(e.target.value);
-};
+  const handleCategoryChangeEvent = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setCategory(e.target.value);
+  };
 
-const handleCategoryChange = (newCategory: string) => {
-  setCategory(newCategory === "Collection" ? "" : newCategory);
-};
+  const handleCategoryChange = (newCategory: string) => {
+    setCategory(newCategory === "Collection" ? "" : newCategory);
+  };
 
   const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -39,6 +41,7 @@ const handleCategoryChange = (newCategory: string) => {
       <Head>
         <title>E-commerce Platform</title>
         <meta name="description" content="Browse our collection of products." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout onSelectCategory={handleCategoryChange}>
         <div className="container mx-auto p-6">

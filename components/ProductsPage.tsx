@@ -78,7 +78,7 @@ const ProductsPage: React.FC<ProductsPageProps> = () => {
   };
 
   return (
-    <Layout onSelectCategory={handleCategoryChange}>
+    <>
       <Head>
         <title>Product Listing | My E-commerce Platform</title>
         <meta
@@ -90,121 +90,125 @@ const ProductsPage: React.FC<ProductsPageProps> = () => {
           property="og:description"
           content="Browse our collection of amazing products!"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className="container mx-auto p-2">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold">Product Listing</h1>
-          <Dialog>
-            <DialogTrigger>
-              <Button type="button" className="flex items-center gap-2">
-                <PlusIcon className="w-4 h-4" /> Add New Product
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <h1 className="text-3xl font-bold mb-6">Add New Product</h1>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleAddProduct();
-                }}
+      <Layout onSelectCategory={handleCategoryChange}>
+        <div className="container mx-auto p-2">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-3xl font-bold">Product Listing</h1>
+            <Dialog>
+              <DialogTrigger>
+                <Button type="button" className="flex items-center gap-2">
+                  <PlusIcon className="w-4 h-4" /> Add New Product
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <h1 className="text-3xl font-bold mb-6">Add New Product</h1>
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleAddProduct();
+                  }}
+                >
+                  {/* Name Field */}
+                  <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      type="text"
+                      id="name"
+                      placeholder="Product Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+
+                  {/* Description Field */}
+                  <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
+                    <Label htmlFor="description">Description</Label>
+                    <Input
+                      type="text"
+                      id="description"
+                      placeholder="Product Description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </div>
+
+                  {/* Price Field */}
+                  <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="price">Price</Label>
+                    <Input
+                      type="number"
+                      id="price"
+                      placeholder="Product Price"
+                      value={price}
+                      onChange={(e) => setPrice(parseFloat(e.target.value))}
+                    />
+                  </div>
+
+                  {/* Category Field */}
+                  <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
+                    <Label htmlFor="category">Category</Label>
+                    <Input
+                      type="text"
+                      id="category"
+                      placeholder="Product Category"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                    />
+                  </div>
+
+                  {/* Image Upload Field */}
+                  <div className="grid w-full max-w-sm items-center gap-1.5 mb-3">
+                    <Label htmlFor="picture">Picture</Label>
+                    <Input
+                      id="picture"
+                      type="file"
+                      onChange={handleImageChange}
+                    />
+                  </div>
+
+                  <Button type="submit">Add Product</Button>
+                </form>
+              </DialogContent>
+            </Dialog>
+          </div>
+
+          <div className="flex items-start md:flex-row flex-col md:gap-10">
+            <div className="mb-6">
+              <label className="mr-4">Filter by Category:</label>
+              <select
+                onChange={handleCategoryChangeEvent}
+                value={category}
+                className="border p-2 rounded"
               >
-                {/* Name Field */}
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    type="text"
-                    id="name"
-                    placeholder="Product Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
+                <option value="">All</option>
+                <option value="earphones">earphones</option>
+                <option value="headphones">headphones</option>
+                <option value="speaker">speaker</option>
+                <option value="watch">watch</option>
+                <option value="laptop">laptop</option>
+              </select>
+            </div>
 
-                {/* Description Field */}
-                <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
-                  <Label htmlFor="description">Description</Label>
-                  <Input
-                    type="text"
-                    id="description"
-                    placeholder="Product Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-
-                {/* Price Field */}
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                  <Label htmlFor="price">Price</Label>
-                  <Input
-                    type="number"
-                    id="price"
-                    placeholder="Product Price"
-                    value={price}
-                    onChange={(e) => setPrice(parseFloat(e.target.value))}
-                  />
-                </div>
-
-                {/* Category Field */}
-                <div className="grid w-full max-w-sm items-center gap-1.5 my-3">
-                  <Label htmlFor="category">Category</Label>
-                  <Input
-                    type="text"
-                    id="category"
-                    placeholder="Product Category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                </div>
-
-                {/* Image Upload Field */}
-                <div className="grid w-full max-w-sm items-center gap-1.5 mb-3">
-                  <Label htmlFor="picture">Picture</Label>
-                  <Input
-                    id="picture"
-                    type="file"
-                    onChange={handleImageChange}
-                  />
-                </div>
-
-                <Button type="submit">Add Product</Button>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
-
-        <div className="flex items-start md:flex-row flex-col md:gap-10">
-          <div className="mb-6">
-            <label className="mr-4">Filter by Category:</label>
-            <select
-              onChange={handleCategoryChangeEvent}
-              value={category}
-              className="border p-2 rounded"
-            >
-              <option value="">All</option>
-              <option value="earphones">earphones</option>
-              <option value="headphones">headphones</option>
-              <option value="speaker">speaker</option>
-              <option value="watch">watch</option>
-              <option value="laptop">laptop</option>
-            </select>
+            <div className="mb-6">
+              <label className="mr-4">Filter by Maximum Price:</label>
+              <input
+                type="number"
+                placeholder="Max Price"
+                onChange={handleMaxPriceChange}
+                value={maxPrice}
+                className="border p-2 rounded"
+              />
+            </div>
           </div>
 
-          <div className="mb-6">
-            <label className="mr-4">Filter by Maximum Price:</label>
-            <input
-              type="number"
-              placeholder="Max Price"
-              onChange={handleMaxPriceChange}
-              value={maxPrice}
-              className="border p-2 rounded"
-            />
-          </div>
+          <ProductList products={filteredProducts} />
         </div>
-
-        <ProductList products={filteredProducts} />
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

@@ -48,6 +48,11 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={product.imageUrl} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="canonical"
+          href={`https://e-commerce-rho-swart.vercel.app/products/${product.id}`}
+        />
       </Head>
 
       <div>

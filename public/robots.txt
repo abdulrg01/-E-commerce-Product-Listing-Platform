@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: e-commerce-rho-swart.vercel.app
+
+# Sitemaps
+Sitemap: e-commerce-rho-swart.vercel.app/sitemap.xml
